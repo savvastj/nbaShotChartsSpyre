@@ -43,9 +43,9 @@ class ShotChartApp(server.App):
                     "label": 'Bottom Chart', 
                     "options" : [
                         {"label": "FG% Heatmap", "value":"heatmap"},
-                        {"label": "FGA Hexbin", "value":"hexbin"},
-                        {"label": "FGA Scatter", "value":"scatter"},
-                        {"label": "FGA KDE", "value":"kde"}
+                        {"label": "FGA Hexbin Chart", "value":"hexbin"},
+                        {"label": "FGA Scatter Chart", "value":"scatter"},
+                        {"label": "FGA Density Chart", "value":"kde"}
                         ],
                     "key": 'plot',
                     "action_id":"update_static"}]
@@ -122,7 +122,7 @@ class ShotChartApp(server.App):
                                                   player_shots.LOC_Y,
                                                   joint_type="hex",
                                                   marginals_type='hist',
-                                                  hex_gridsize=23,
+                                                  # hex_gridsize=10,
                                                   cmap=plt.cm.gist_heat_r,
                                                   marginals_color=plt.cm.gist_heat_r(.2),
                                                   title=title,
@@ -135,9 +135,10 @@ class ShotChartApp(server.App):
                                                   player_shots.LOC_Y,
                                                   joint_type="kde",
                                                   marginals_type='kde',
-                                                  marginals_color=plt.cm.YlOrRd_r(0.1),
-                                                  cmap=plt.cm.YlOrRd_r,
+                                                  marginals_color=plt.cm.gist_heat_r(.2),
+                                                  cmap=plt.cm.gist_heat_r,
                                                   n_levels=50,
+                                                  # alpha=0.9,
                                                   title=title,
                                                   size=(6*1.65,5.5*1.65))
             return shot_chart.fig
