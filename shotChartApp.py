@@ -179,6 +179,6 @@ class ShotChartApp(server.App):
     def getCustomCSS(self):
         return INLINE.css_raw[0]
 
-
-app = ShotChartApp()
-app.launch(port=5000)
+if __name__ == "__main__":
+    app = ShotChartApp()
+    app.launch(host='0.0.0.0', port=int(os.environ.get('PORT', '5000')))
